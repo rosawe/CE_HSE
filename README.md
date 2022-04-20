@@ -1,11 +1,14 @@
-Code originally written by James Guillochon. README last updated 11/24/2015.
+Code originally written by James Guillochon, with updates and additions by Rosa Wallace Everson, Jamie Law-Smith, and Samantha Wu. README last updated 4/20/2022. Hydrostatic equilibrium code adapted from BANG setup by Sean Couch, following the method from Zingale et al. 2002.
 
-This simulation setup allows one to simulate the interaction between an extended, polytropic object and a point mass. The code now utilizes the Sinks module to integrate particle trajectories, which brings the benefit of being able to include an arbitrary number of point-like perturbers. The code has been tested to work with FLASH 4.2.2, and is currently being tested with FLASH 4.3, the latest version.
+This simulation setup allows one to simulate the interaction between MESA star and a point mass. The code now utilizes the Sinks module to integrate particle trajectories, which brings the benefit of being able to include an arbitrary number of point-like perturbers. The code has been tested to work with FLASH 4.3, but is not compatible with later versions.
 
 To install, clone this repository to the Simulation path within the FLASH hierarchy:
 
 	cd /path/to/flash/directory/FLASH4.3/source/Simulation/SimulationMain
-	hg clone ssh://hg@bitbucket.org/Guillochon/multitidal
+	hg clone https://github.com/rosawe/CE_HSE.git
+
+
+! Updates needed below, the following is an outdated setup
 
 Then, change back to the main FLASH directory and run the setup script. A recommended setup for the default parameters are (for pure hydro):
 
