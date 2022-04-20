@@ -5,7 +5,7 @@ This simulation setup allows one to simulate the interaction between MESA star a
 To install, clone this repository to the Simulation path within the FLASH hierarchy:
 
 	cd /path/to/flash/directory/FLASH4.3/source/Simulation/SimulationMain
-	hg clone https://github.com/rosawe/CE_HSE.git
+	git clone https://github.com/rosawe/CE_HSE.git
 
 
 ! Updates needed below, the following is an outdated setup
