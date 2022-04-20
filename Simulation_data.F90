@@ -80,7 +80,7 @@ module Simulation_data
 
   double precision, save    :: grv_cfl
 
-  double precision, save    :: sim_vxi, sim_vyi, sim_vzi, sim_startY
+  double precision, save    :: sim_vxi, sim_vyi, sim_vzi, sim_startY, sim_startX, sim_refine_radius_factor
   integer, save             :: sim_lastRow
 
 end module Simulation_data

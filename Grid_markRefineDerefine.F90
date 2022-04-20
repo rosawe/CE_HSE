@@ -53,7 +53,7 @@ subroutine Grid_markRefineDerefine()
       sim_xCenter, sim_yCenter, sim_zCenter, refinement_type, sim_kind, stvec, &
       sim_softenRadius, sim_fixedPartTag, sim_windNCells, &
       sim_tDelay, sim_periDist, sim_ptMass, sim_cylinderType, &
-      sim_maxBlocks
+      sim_maxBlocks, sim_refine_radius_factor
   use pt_sinkInterface, ONLY : pt_sinkGatherGlobal
   use Multitidal_interface, ONLY : Multitidal_findExtrema
   use Particles_sinkData, ONLY : localnpf, particles_global
@@ -168,9 +168,12 @@ subroutine Grid_markRefineDerefine()
 
   if (dr_simTime .eq. 0.d0) then
       if (sim_kind .eq. 'polytrope') then
+          !JLS this was original:
           !specs = (/ sim_xCenter, sim_yCenter, sim_zCenter, sim_objRadius, 0., 0., 0. /)
-          !sam change: for zooming in on core
-          specs = (/ sim_xCenter, sim_yCenter, sim_zCenter, 0.2*sim_objRadius, 0., 0., 0. /)
+          !sam change: for zooming in on core:
+          !specs = (/ sim_xCenter, sim_yCenter, sim_zCenter, 0.2*sim_objRadius, 0., 0., 0. /)
+          !JLS made this a runtime parameter:
+          specs = (/ sim_xCenter, sim_yCenter, sim_zCenter, sim_refine_radius_factor*sim_objRadius, 0., 0., 0. /)
           call Grid_markRefineSpecialized(INRADIUS, 4, specs(1:4), gr_maxRefine)
       elseif (sim_kind .eq. 'powerlaw') then
           specs = (/ sim_xCenter, sim_yCenter, sim_zCenter, sim_softenRadius, 0., 0., 0. /)

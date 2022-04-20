@@ -49,7 +49,7 @@ subroutine Driver_sourceTerms(blockCount, blockList, dt, pass)
         sim_kind, sim_windVelocity, sim_windMdot, sim_windTemperature, sim_windNCells, &
         sim_fixedPartTag, sim_windKernel, sim_cylinderType, sim_orbEcc, sim_periDist, &
         sim_tDelay, sim_mpoleVX, sim_mpoleVY, sim_mpoleVZ, sim_smallT, &
-        sim_startDistance, sim_fixedParticle, sim_vyi, sim_startY
+        sim_startDistance, sim_fixedParticle
     use Grid_interface, ONLY : Grid_getBlkIndexLimits, Grid_getBlkPtr, Grid_releaseBlkPtr,&
         Grid_getCellCoords, Grid_putPointData, Grid_getMinCellSize, Grid_fillGuardCells
     use PhysicalConstants_interface, ONLY : PhysicalConstants_get

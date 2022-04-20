@@ -150,6 +150,8 @@ subroutine Simulation_init()
 
     call RuntimeParameters_get("sim_vyi", sim_vyi)
     call RuntimeParameters_get("sim_startY", sim_startY)
+    call RuntimeParameters_get("sim_startX", sim_startX)
+    call RuntimeParameters_get("sim_refine_radius_factor", sim_refine_radius_factor)
 
     if (sim_powerLawExponent .le. -3.d0) then
         call Driver_abortFlash('Error: sim_powerLawExponent must be greater than -3.0')
@@ -208,9 +210,10 @@ subroutine Simulation_init()
         !sam: trim envelope (next 2 lines)
         sim_table=sim_table1(:sim_lastRow,:)
         sim_tableRows = sim_lastRow
-        write(*,*) 'r_prof', sim_table(:,R_PROF)
-        write(*,*) 'rho_prof', sim_table(:,RHO_PROF)
-        write(*,*) 'temp_prof', sim_table(:,TEMP_PROF)
+        !write(*,*) 'r_prof', sim_table(:,R_PROF)
+        !write(*,*) 'rho_prof', sim_table(:,RHO_PROF)
+        !write(*,*) 'temp_prof', sim_table(:,TEMP_PROF)
+        write(*,*) 'Loaded stellar profile.'
     endif
 
     call MPI_BCAST(sim_tableRows, 1, FLASH_INTEGER, MASTER_PE, MPI_COMM_WORLD, ierr)
@@ -365,12 +368,14 @@ subroutine Simulation_init()
         !ptvec = ptvec - obvec
 
         !set ptvec directly from parameter inputs
-         ptvec(1) =  sim_startDistance
-         ptvec(2) =  sim_startY
-         ptvec(3) = 0.0
-         ptvec(4) = 0.0
-         ptvec(5) = sim_vyi
-         ptvec(6) = 0.0
+        !JLS experiment with just setting sim_startX in flash.par
+        !ptvec(1) =  sim_startDistance
+        ptvec(1) =  sim_startX
+        ptvec(2) =  sim_startY
+        ptvec(3) = 0.0
+        ptvec(4) = 0.0
+        ptvec(5) = sim_vyi
+        ptvec(6) = 0.0
 
         if (sim_fixedParticle .eq. 1) then
             ptvecs(1,:) = ptvec
@@ -479,8 +484,9 @@ subroutine Simulation_init()
     endif
 
     if (gr_globalMe .eq. MASTER_PE) then
+        !JLS
         !sam: merger: added obj. radius to first logfile line
-        write(logstr, fmt='(A30, 2ES15.8)') 'Start distance, obj. radius:', start_dist, sim_objRadius
+        write(logstr, fmt='(A30, 2ES15.8)') 'start_dist (not used), obj. radius:', start_dist, sim_objRadius
         call Logfile_stampMessage(logstr)
         write(logstr, fmt='(A30, 6ES15.8)') 'Pt. mass start pos:', ptvecs(1,:)
         call Logfile_stampMessage(logstr)

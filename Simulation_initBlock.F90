@@ -390,6 +390,9 @@ subroutine Simulation_initBlock (blockId, myPE)
 #ifdef MG26_SPEC
               xn(MG26_SPEC) = sumVars(MG26_PROF)
 #endif
+#ifdef AL26_SPEC
+              xn(AL26_SPEC) = sumVars(AL26_PROF)
+#endif
 #ifdef AL27_SPEC
               xn(AL27_SPEC) = sumVars(AL27_PROF)
 #endif
@@ -413,6 +416,21 @@ subroutine Simulation_initBlock (blockId, myPE)
 #endif
 #ifdef S34_SPEC
               xn(S34_SPEC) = sumVars(S34_PROF)
+#endif
+#ifdef AR36_SPEC
+              xn(AR36_SPEC) = sumVars(AR36_PROF)
+#endif
+#ifdef CA40_SPEC
+              xn(CA40_SPEC) = sumVars(CA40_PROF)
+#endif
+#ifdef CR56_SPEC
+              xn(CR56_SPEC) = sumVars(CR56_PROF)
+#endif
+#ifdef FE54_SPEC
+              xn(FE54_SPEC) = sumVars(FE54_PROF)
+#endif
+#ifdef FE56_SPEC
+              xn(FE56_SPEC) = sumVars(FE56_PROF)
 #endif
               xn = xn / sum(xn)
            else

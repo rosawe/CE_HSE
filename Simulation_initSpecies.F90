@@ -58,7 +58,7 @@ subroutine Simulation_initSpecies()
 #ifdef FLASH_MULTISPECIES
 #include "Multispecies.h"
   
-  integer, parameter :: SPEC_UNIT=2,SPEC_NUM=238
+  integer, parameter :: SPEC_UNIT=2,SPEC_NUM=245
   character(len=4)::isotopeName
   real :: abar,zbar,bindEnergy,neutrons, electrons
   integer :: i, isotope,count
